@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Typography, Paper, AppBar, Toolbar, Grid } from "@material-ui/core";
 import TodoList from "./componenets/todo-list/todo-list.component";
+import TodoForm from "./componenets/todo-form/todo-form.component";
+import uuid from "uuid/v4";
 
 const TodoApp = () => {
   const initialTodos = [
@@ -10,6 +12,10 @@ const TodoApp = () => {
   ];
 
   const [todos, setTodos] = useState(initialTodos);
+
+  const addTodo = (task) => {
+    setTodos([...todos, { id: uuid(), task, completed: false }]);
+  };
 
   return (
     <Paper
@@ -26,6 +32,7 @@ const TodoApp = () => {
           <Typography color="inherit">TODOS WITH HOOKS</Typography>
         </Toolbar>
       </AppBar>
+      <TodoForm addTodo={addTodo} />
       <TodoList todos={todos} />
     </Paper>
   );
