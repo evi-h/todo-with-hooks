@@ -1,5 +1,5 @@
 import React from "react";
-import { TextField, Paper, Button } from "@material-ui/core";
+import { TextField, Paper } from "@material-ui/core";
 import useInputState from "../../hooks/useInputState";
 
 const TodoForm = ({ addTodo }) => {
@@ -19,10 +19,8 @@ const TodoForm = ({ addTodo }) => {
           onChange={handleChange}
           margin="normal"
           label="Add New Task"
+          fullWidth
         />
-        <Button type="submit" margin="normal">
-          Add Task
-        </Button>
       </form>
     </Paper>
   );
