@@ -2,19 +2,9 @@ import React from "react";
 import { Typography, Paper, AppBar, Toolbar, Grid } from "@material-ui/core";
 import TodoList from "./componenets/todo-list/todo-list.component";
 import TodoForm from "./componenets/todo-form/todo-form.component";
-import useTodosState from "./hooks/useTodosState";
 import TodosProvider from "./context/todos.context";
 
 const TodoApp = () => {
-  const initialTodos = JSON.parse(window.localStorage.getItem("todos") || "[]");
-  const { todos, addTodo, removeTodo, toggleTodo, editTodo } =
-    useTodosState(initialTodos);
-  // const initialTodos = [
-  //   { id: 1, task: "clean", completed: false },
-  //   { id: 2, task: "wash", completed: true },
-  //   { id: 3, task: "grow beard", completed: false },
-  // ];
-
   return (
     <Paper
       style={{
@@ -33,13 +23,8 @@ const TodoApp = () => {
       <Grid container justify="center" style={{ marginTop: "1rem" }}>
         <Grid item xs={11} md={8} lg={4}>
           <TodosProvider>
-            <TodoForm addTodo={addTodo} />
-            <TodoList
-              todos={todos}
-              remove={removeTodo}
-              toggle={toggleTodo}
-              edit={editTodo}
-            />
+            <TodoForm />
+            <TodoList />
           </TodosProvider>
         </Grid>
       </Grid>
