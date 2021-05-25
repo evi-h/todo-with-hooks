@@ -3,6 +3,7 @@ import { Typography, Paper, AppBar, Toolbar, Grid } from "@material-ui/core";
 import TodoList from "./componenets/todo-list/todo-list.component";
 import TodoForm from "./componenets/todo-form/todo-form.component";
 import useTodosState from "./hooks/useTodosState";
+import TodosProvider from "./context/todos.context";
 
 const TodoApp = () => {
   const initialTodos = JSON.parse(window.localStorage.getItem("todos") || "[]");
@@ -31,13 +32,15 @@ const TodoApp = () => {
       </AppBar>
       <Grid container justify="center" style={{ marginTop: "1rem" }}>
         <Grid item xs={11} md={8} lg={4}>
-          <TodoForm addTodo={addTodo} />
-          <TodoList
-            todos={todos}
-            remove={removeTodo}
-            toggle={toggleTodo}
-            edit={editTodo}
-          />
+          <TodosProvider>
+            <TodoForm addTodo={addTodo} />
+            <TodoList
+              todos={todos}
+              remove={removeTodo}
+              toggle={toggleTodo}
+              edit={editTodo}
+            />
+          </TodosProvider>
         </Grid>
       </Grid>
     </Paper>
